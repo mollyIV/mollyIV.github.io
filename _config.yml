@@ -1,0 +1,33 @@
+title: djankowski
+description: djankowski.dev | Daniel Jankowski is a software engineer with a passion for the mobile development.
+permalink: pretty
+
+exclude:
+  - Gemfile*
+  - node_modules
+  - package.json
+  - package-lock.json
+  - README.md
+  - LICENSE
+  - CC-LICENSE.md
+
+sass:
+  style: :compressed
+  sass_dir: _sass
+  load_paths:
+    - node_modules
+    - node_modules/**/*/node_modules
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: default
+
+branch: master

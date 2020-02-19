@@ -1,0 +1,35 @@
+---
+---
+
+@import "primer-css/index.scss";
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+code {
+  font-size: 14px;
+}
+
+/*
+ * Extend the footer to the bottom of the page,
+ * even if there’s not enough content to make the page scroll.
+ */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-lg {
+  flex: 1;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.text-yellow-800 {
+  color: 	#b08800
+}

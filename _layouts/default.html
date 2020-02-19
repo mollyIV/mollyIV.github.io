@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/assets/css/index.css?d={{ site.time | date: '%s' }}">
+    <link rel="stylesheet" href="/assets/css/syntax.css?d={{ site.time | date: '%s' }}">
+
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:type" content="website" /> 
+  </head>
+  <body>
+    {% include nav.html %}
+
+    {{ content }}
+
+    {% include footer.html %}
+  </body>
+</html>
