@@ -1,6 +1,4 @@
-# 👨‍💻 [djankowski.dev](https://djankowski.dev)
-
-This repo contains the full source code for the [mollyIV](https://djankowski.dev) website.
+This repo contains the full source code for the mollyIV website.
 
 ## License
 
