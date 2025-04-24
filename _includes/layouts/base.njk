@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="{{ metadata.language }}">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ title or metadata.title }}</title>
+
+        {%- css %}{% include "public/css/index.css" %}{% endcss %}
+        <style>{% getBundle "css" %}</style>
+    </head>
+    <body>
+        <a href="#skip" class="visually-hidden">Skip to main content</a>
+
+        <div class="content">
+            <header>
+                <div class="main">
+                    <a href="/">{{ metadata.title }}</a>
+                </div>
+                <nav>
+                    <h2 class="visually-hidden">Top level navigation menu</h2>
+                    {% for item in collections.all | eleventyNavigation %}
+                        <a href="{{ item.url }}">{{ item.title }}</a>
+                    {% endfor %}
+                </nav>
+            </header>
+
+            <main id="skip">
+                {{ content | safe }}
+            </main>
+        </div>
+    </body>
+</html>

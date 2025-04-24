@@ -1,4 +1,4 @@
-This repo contains the full source code for the mollyIV website.
+This repository contains the complete source code for the mollyIV website.
 
 ## License
 

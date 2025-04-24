@@ -1,6 +1,29 @@
 {
-    "private": true,
-    "dependencies": {
-        "primer-css": "^8.0.0"
-    }
+  "name": "mollyiv",
+  "version": "1.0.0",
+  "description": "Personal website of mollyIV.",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx @11ty/eleventy --serve --quiet",
+    "build": "npx @11ty/eleventy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mollyIV/mollyIV.github.io.git"
+  },
+  "keywords": [],
+  "author": "mollyIV",
+  "bugs": {
+    "url": "https://github.com/mollyIV/mollyIV.github.io/issues"
+  },
+  "homepage": "",
+  "type": "module",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy-navigation": "^1.0.4",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
+    "luxon": "^3.5.0",
+    "prismjs": "^1.30.0"
+  },
+  "dependencies": {}
 }

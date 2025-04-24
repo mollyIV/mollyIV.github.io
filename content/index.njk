@@ -1,0 +1,11 @@
+---
+eleventyNavigation:
+  key: Blog
+  order: 1
+---
+
+
+<h1>All posts</h1>
+
+{% set postslist = collections.post %}
+{% include "postslist.njk" %}
