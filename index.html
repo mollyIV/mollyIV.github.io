@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>mollyIV</title>
+        <style>:root {
+  --maincolor: #546e7a;
+  --hovercolor: #bf360c;
+  --bordercl: #78909c;
+}
+
+html {
+  font-family: "Roboto Mono", monospace, -apple-system, sans-serif;
+  font-size: 15px;
+  line-height: 1.6em;
+}
+
+body {
+  display: block;
+}
+
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+::selection {
+  background: var(--maincolor);
+  color: #fff;
+}
+
+p {
+  font-family: sans-serif;
+  line-height: 1.5;
+}
+
+a {
+  border-bottom: 3px solid var(--maincolor);
+  color: inherit;
+  text-decoration: none;
+}
+a:hover {
+  background-color: var(--hovercolor);
+  color: #fff;
+}
+
+ul {
+  list-style: none;
+  padding-left: 2ch;
+}
+ul li {
+  text-indent: -2ch;
+}
+ul > li::before {
+  content: "* ";
+  font-weight: bold;
+}
+
+.content {
+  margin-bottom: 4em;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 50em;
+  padding: 0 1ch;
+  word-wrap: break-word;
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 1em 0;
+  line-height: 2.5em;
+}
+header .main {
+  font-size: 1.5rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 1.2rem;
+  margin-top: 2em;
+}
+
+h1::before {
+  color: var(--maincolor);
+  content: "# ";
+}
+h2::before {
+  color: var(--maincolor);
+  content: "## ";
+}
+h3::before {
+  color: var(--maincolor);
+  content: "### ";
+}
+h4::before {
+  color: var(--maincolor);
+  content: "#### ";
+}
+h5::before {
+  color: var(--maincolor);
+  content: "##### ";
+}
+h6::before {
+  color: var(--maincolor);
+  content: "###### ";
+}
+
+time {
+  color: grey;
+}
+
+.meta {
+  color: #999;
+  letter-spacing: -0.5px;
+}
+
+pre[class*="language-"] {
+  -webkit-overflow-scrolling: touch;
+}
+
+code[class*="language-"]::selection,
+code[class*="language-"] span::selection {
+  background: rgba(255, 255, 255, 0.2);
+  color: inherit;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  border-top: 0.2rem dotted var(--bordercl);
+  padding: 2rem 0rem;
+  margin-top: 2rem;
+}
+
+.footer-info {
+  padding: var(--footer-padding);
+}
+
+.tags li::before {
+  content: "🏷 ";
+}
+.tags a {
+  border-bottom: 3px solid var(--maincolor);
+}
+.tags a:hover {
+  color: white;
+  background-color: var(--hovercolor);
+}
+
+/* https://www.a11yproject.com/posts/how-to-hide-content/ */
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}</style>
+    </head>
+    <body>
+        <a href="#skip" class="visually-hidden">Skip to main content</a>
+
+        <div class="content">
+            <header>
+                <div class="main">
+                    <a href="/">mollyIV</a>
+                </div>
+                <nav>
+                    <h2 class="visually-hidden">Top level navigation menu</h2>
+                    
+                        <a href="/" aria-current="page">Blog</a>
+                    
+                        <a href="/about/">About</a>
+                    
+                        <a href="/tags/"></a>
+                    
+                </nav>
+            </header>
+
+            <main id="skip">
+                
+
+<h1>All posts</h1>
+
+
+<ul class="posts">
+        <li class="post">
+            <a href="/blog/2025-04-24/">This is a blog post</a>
+            <time datetime="2025-04-24" class="meta">2025-04-24</time>
+        </li>
+</ul>
+            </main>
+        </div>
+    </body>
+</html>
