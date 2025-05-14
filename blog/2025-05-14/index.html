@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>This is a blog post</title>
+        <title>Why MVVM is still the best choice for your iOS app</title>
         <style>/**
  * okaidia theme for JavaScript, CSS and HTML
  * Loosely based on Monokai textmate theme by http://www.monokai.nl/
@@ -311,11 +311,32 @@ footer {
                 
 
 <div class="post-title">
-    <h1>This is a blog post</h1>
-    <time datetime="2025-04-24" class="meta">Posted on 2025-04-24</time>
+    <h1>Why MVVM is still the best choice for your iOS app</h1>
+    <time datetime="2025-05-14" class="meta">Posted on 2025-05-14</time>
 </div>
 
-<p>This is a blog post.</p>
+<p>In iOS development, there’s always something new: a shiny framework, a revamped UI, the latest Swift feature, or a hot architecture pattern. It’s tempting to chase the next big thing.</p>
+<p>Every so often, we build a quick proof-of-concept to try out these ideas. But no matter what we try, we always find ourselves coming back to MVVM (Model-View-ViewModel). And for good reasons.</p>
+<p>At its core, MVVM is all about <strong>inputs and outputs</strong>.</p>
+<p>The view model defines the actions a user can take, like tapping a button (the inputs), and exposes the data the UI needs to display (outputs).</p>
+<p>For example, imagine the login screen of the Duolingo app.</p>
+<picture><source type="image/avif" srcset="/blog/2025-05-14/dqtmO-APnZ-1290.avif 1290w"><source type="image/webp" srcset="/blog/2025-05-14/dqtmO-APnZ-1290.webp 1290w"><img loading="lazy" decoding="async" src="/blog/2025-05-14/dqtmO-APnZ-1290.jpeg" alt="The screenshot of the login screen from the Duolingo app." style="width: 50%; height: auto;" width="1290" height="2796"></picture>
+<p>It’s view model might look something like this:</p>
+<pre class="language-swift" tabindex="0"><code class="language-swift"><span class="token comment">// Inputs </span>
+<span class="token keyword">func</span> <span class="token function-definition function">getStartedButtonTapped</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">func</span> <span class="token function-definition function">loginButtonTapped</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment">// Outputs</span>
+<span class="token attribute atrule">@Published</span> <span class="token keyword">var</span> title<span class="token punctuation">:</span> <span class="token class-name">String</span> <span class="token comment">// duolingo</span>
+<span class="token attribute atrule">@Published</span> <span class="token keyword">var</span> subtitle<span class="token punctuation">:</span> <span class="token class-name">String</span> <span class="token comment">// Learn for free. Forever.</span>
+<span class="token attribute atrule">@Published</span> <span class="token keyword">var</span> getStartedButtonTitle<span class="token punctuation">:</span> <span class="token class-name">String</span> <span class="token comment">// GET STARTED</span>
+<span class="token attribute atrule">@Published</span> <span class="token keyword">var</span> loginButtonTitle<span class="token punctuation">:</span> <span class="token class-name">String</span> <span class="token comment">// I ALREADY HAVE AN ACCOUNT</span></code></pre>
+<p>The MVVM architecture <strong>scales really well</strong> as your app grows. Each screen gets its own view model, so things stay clean and easy to reason about. Add repositories for data and coordinators  or navigation paths for navigation, and it’ll serve you well for a long time.</p>
+<p>MVVM has a low entry bar. It’s <strong>simple to explain and easy to pick up</strong>. You can look at a view model and immediately understand what user actions it handles and what data it provides. That makes it easier to debug, review, and collaborate on.</p>
+<p><strong>Testing is straightforward</strong>. You simulate user actions and check if the outputs change as expected. That’s it.</p>
+<p>MVVM <strong>works out of the box</strong>. No need for external libraries, so you’re never blocked by updates or waiting on bug fixes. You own the entire implementation.</p>
+<p>In the end, you really can’t go wrong with MVVM. It’s pragmatic, easy to understand, simple to test, and scales as your app grows. No extra dependencies. No steep learning curve. Just a solid architecture that works.</p>
+<p>Give it a try on your next screen. You might not look back.</p>
 
 
 <ul class="tags">
