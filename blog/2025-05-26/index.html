@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>I wish Fastlane were written in Swift</title>
+        <style>/**
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #f8f8f2;
+	background: none;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #272822;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: #8292a2;
+}
+
+.token.punctuation {
+	color: #f8f8f2;
+}
+
+.token.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #f92672;
+}
+
+.token.boolean,
+.token.number {
+	color: #ae81ff;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #a6e22e;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	color: #f8f8f2;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+	color: #e6db74;
+}
+
+.token.keyword {
+	color: #66d9ef;
+}
+
+.token.regex,
+.token.important {
+	color: #fd971f;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+:root {
+  --maincolor: #546e7a;
+  --hovercolor: #bf360c;
+  --bordercl: #78909c;
+}
+
+html {
+  font-family: "Roboto Mono", monospace, -apple-system, sans-serif;
+  font-size: 15px;
+  line-height: 1.6em;
+}
+
+body {
+  display: block;
+}
+
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+::selection {
+  background: var(--maincolor);
+  color: #fff;
+}
+
+p {
+  font-family: sans-serif;
+  line-height: 1.5;
+}
+
+a {
+  border-bottom: 3px solid var(--maincolor);
+  color: inherit;
+  text-decoration: none;
+}
+a:hover {
+  background-color: var(--hovercolor);
+  color: #fff;
+}
+
+ul {
+  list-style: none;
+  padding-left: 2ch;
+}
+ul li {
+  text-indent: -2ch;
+}
+ul > li::before {
+  content: "* ";
+  font-weight: bold;
+}
+
+.content {
+  margin-bottom: 4em;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 50em;
+  padding: 0 1ch;
+  word-wrap: break-word;
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 1em 0;
+  line-height: 2.5em;
+}
+header .main {
+  font-size: 1.5rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 1.2rem;
+  margin-top: 2em;
+}
+
+h1::before {
+  color: var(--maincolor);
+  content: "# ";
+}
+h2::before {
+  color: var(--maincolor);
+  content: "## ";
+}
+h3::before {
+  color: var(--maincolor);
+  content: "### ";
+}
+h4::before {
+  color: var(--maincolor);
+  content: "#### ";
+}
+h5::before {
+  color: var(--maincolor);
+  content: "##### ";
+}
+h6::before {
+  color: var(--maincolor);
+  content: "###### ";
+}
+
+time {
+  color: grey;
+}
+
+.meta {
+  color: #999;
+  letter-spacing: -0.5px;
+}
+
+pre[class*="language-"] {
+  -webkit-overflow-scrolling: touch;
+}
+
+code[class*="language-"]::selection,
+code[class*="language-"] span::selection {
+  background: rgba(255, 255, 255, 0.2);
+  color: inherit;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  border-top: 0.2rem dotted var(--bordercl);
+  padding: 2rem 0rem;
+  margin-top: 2rem;
+}
+
+.footer-info {
+  padding: var(--footer-padding);
+}
+
+.tags li::before {
+  content: "🏷 ";
+}
+.tags a {
+  border-bottom: 3px solid var(--maincolor);
+}
+.tags a:hover {
+  color: white;
+  background-color: var(--hovercolor);
+}
+
+/* https://www.a11yproject.com/posts/how-to-hide-content/ */
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}</style>
+    </head>
+    <body>
+        <a href="#skip" class="visually-hidden">Skip to main content</a>
+
+        <div class="content">
+            <header>
+                <div class="main">
+                    <a href="/">mollyIV</a>
+                </div>
+                <nav>
+                    <h2 class="visually-hidden">Top level navigation menu</h2>
+                    
+                        <a href="/">Blog</a>
+                    
+                        <a href="/about/">About</a>
+                    
+                        <a href="/tags/"></a>
+                    
+                </nav>
+            </header>
+
+            <main id="skip">
+                
+
+<div class="post-title">
+    <h1>I wish Fastlane were written in Swift</h1>
+    <time datetime="2025-05-26" class="meta">Posted on 2025-05-26</time>
+</div>
+
+<p>Did you know you can write <a href="https://docs.fastlane.tools/getting-started/ios/fastlane-swift/">Fastlane lanes in Swift</a>?</p>
+<p>Technically, yes, but the development experience is a far cry from what you’re used to when working with Swift.</p>
+<p>When I first discovered Fastlane Swift, I was over the moon. I immediately created a small demo project and took it for a spin. It took me a while to get it working, only to realize many problems.</p>
+<p><strong>Fastlane Swift’s Core Implementation</strong></p>
+<p>Even though Fastlane Swift lets you write lanes in Swift, it doesn’t mean Fastlane itself is implemented in Swift. In fact, it isn’t.</p>
+<p>If you examine <a href="https://github.com/fastlane/fastlane/blob/master/fastlane/swift/Runner.swift">the codebase closely</a>, you’ll see that Fastlane Swift is just a thin wrapper around the original Ruby implementation.</p>
+<p>This means you still have to have Fastlane Ruby installed. But there’s a problem.</p>
+<p>Fastlane Swift doesn’t respect the Fastlane version set by tools like bundler or <a href="https://github.com/jdx/mise">mise</a>. It just uses whatever version is installed in your system’s default location. That creates problems in CI setups and makes it impossible to provide a unified development experience for your team.</p>
+<p><strong>Public APIs</strong></p>
+<p>The public APIs in Fastlane Swift are auto-generated. That’s why they don’t feel anything like what Swift developers expect.</p>
+<p>Each action is a 1-to-1 mirror of its Ruby counterpart. For example, the <code>match</code> action is represented like <a href="https://github.com/fastlane/fastlane/blob/master/fastlane/swift/Fastlane.swift#L6772-L6828">this</a>:</p>
+<pre class="language-swift" tabindex="0"><code class="language-swift"><span class="token keyword">public</span> <span class="token keyword">func</span> <span class="token function-definition function">match</span><span class="token punctuation">(</span>
+  type<span class="token punctuation">:</span> <span class="token class-name">String</span><span class="token punctuation">,</span>
+  additionalCertTypes<span class="token punctuation">:</span> <span class="token class-name">OptionalConfigValue</span><span class="token operator">&lt;</span><span class="token punctuation">[</span><span class="token class-name">String</span><span class="token punctuation">]</span><span class="token operator">?></span><span class="token punctuation">,</span>
+  readonly<span class="token punctuation">:</span> <span class="token class-name">OptionalConfigValue</span><span class="token operator">&lt;</span><span class="token class-name">Bool</span><span class="token operator">></span><span class="token punctuation">,</span>
+  generateAppleCerts<span class="token punctuation">:</span> <span class="token class-name">OptionalConfigValue</span><span class="token operator">&lt;</span><span class="token class-name">Bool</span><span class="token operator">></span><span class="token punctuation">,</span>
+  skipProvisioningProfiles<span class="token punctuation">:</span> <span class="token class-name">OptionalConfigValue</span><span class="token operator">&lt;</span><span class="token class-name">Bool</span><span class="token operator">></span><span class="token punctuation">,</span>
+  <span class="token comment">// and many more parameters...</span>
+<span class="token punctuation">}</span></code></pre>
+<p>You still need to open the original Ruby documentation to figure out how to use it. There are no clean, intuitive APIs guiding you through the process.</p>
+<p><strong>Handling Lane Parameters</strong></p>
+<p>Fastlane actions support passing parameters:</p>
+<pre class="language-ruby" tabindex="0"><code class="language-ruby">$ fastlane run gym project<span class="token symbol">:"/a/path/to/a/project"</span> clean<span class="token symbol">:"true"</span></code></pre>
+<p>Handling parameters in Fastlane Swift is clunky and error-prone. There’s no compiler safety:</p>
+<pre class="language-swift" tabindex="0"><code class="language-swift"><span class="token comment">// Example from the official Fastlane docs</span>
+<span class="token keyword">class</span> <span class="token class-name">Fastfile</span><span class="token punctuation">:</span> <span class="token class-name">LaneFile</span> <span class="token punctuation">{</span>
+  <span class="token keyword">func</span> <span class="token function-definition function">deployLane</span><span class="token punctuation">(</span>withOptions options<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token class-name">String</span><span class="token punctuation">:</span> <span class="token class-name">String</span><span class="token punctuation">]</span><span class="token operator">?</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+    <span class="token keyword">if</span> <span class="token keyword">let</span> submit <span class="token operator">=</span> options<span class="token operator">?</span><span class="token punctuation">[</span><span class="token string-literal"><span class="token string">"submit"</span></span><span class="token punctuation">]</span><span class="token punctuation">,</span> submit <span class="token operator">==</span> <span class="token string-literal"><span class="token string">"true"</span></span> <span class="token punctuation">{</span>
+      <span class="token comment">// Only when submit is true</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// ...</span>
+    <span class="token function">incrementBuildNumber</span><span class="token punctuation">(</span>buildNumber<span class="token punctuation">:</span> options<span class="token operator">?</span><span class="token punctuation">[</span><span class="token string-literal"><span class="token string">"build_number"</span></span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+    <span class="token comment">// ...</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Fortunately, we now have libraries like <a href="https://github.com/apple/swift-argument-parser">swift-argument-parser</a> that could make this cleaner and safer.</p>
+<h2>A Better Way Forward</h2>
+<p>Swift has evolved, and so should this feature. Reimplementing the foundational pieces of Fastlane in Swift could solve most of these issues.</p>
+<p>Let me explain.</p>
+<p><strong>Native to Swift Developers</strong></p>
+<p>As an iOS developer, I want to write automation in Swift. It’s the language I’m comfortable with and it brings me joy.</p>
+<p>If your whole team knows Swift, the barrier to contributing drops. Automation is no longer reserved for the few who know Ruby.</p>
+<p>Some may argue that with the rise of LLMs, the language doesn’t matter anymore. I disagree.</p>
+<p>These tools can help, but only up to a point. Eventually, someone has to dive deep. And when they do, being in your native language makes all the difference.</p>
+<p><strong>Clean and Concise Public APIs</strong></p>
+<p>Fastlane has added a lot of features over the years. Keeping backward compatibility means actions like <code>match</code> have ballooned in complexity.</p>
+<p>Did you know <code>match</code> supports 54 parameters?</p>
+<p>Many of them are mutually exclusive.</p>
+<p>Rewriting Fastlane in Swift would be a rare opportunity to start from scratch. Just imagine how the APIs could look:</p>
+<pre class="language-swift" tabindex="0"><code class="language-swift"><span class="token keyword">import</span> <span class="token class-name">FastlaneBuilding</span>
+
+<span class="token keyword">let</span> options <span class="token operator">=</span> <span class="token class-name">BuildOptions</span><span class="token punctuation">(</span>
+  scheme<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">"MyApp"</span></span><span class="token punctuation">,</span> 
+  configuration<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">"Debug"</span></span><span class="token punctuation">,</span> 
+  platform<span class="token punctuation">:</span> <span class="token punctuation">.</span><span class="token function">iOS</span><span class="token punctuation">(</span><span class="token punctuation">.</span>v17<span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+<span class="token keyword">try</span> <span class="token keyword">await</span> <span class="token class-name">FastlaneBuild</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">buildProject</span><span class="token punctuation">(</span>at<span class="token punctuation">:</span> path<span class="token punctuation">,</span> with<span class="token punctuation">:</span> options<span class="token punctuation">)</span> </code></pre>
+<p>Concise. Type-safe. Easy to use.</p>
+<p><strong>No More Ruby Versioning</strong></p>
+<p>You wouldn’t need to worry about managing Ruby versions anymore. Tools like <code>mise</code> make it easier, sure — but it’s still another layer of friction. One less thing to deal with is always a win.</p>
+<p><strong>Compiler Safety</strong></p>
+<p>Interpreted languages are great for prototyping. But my Fastlane lanes aren’t prototypes. They’re production code. I’m happy to trade a bit of prototyping speed for long-term reliability.</p>
+<p><strong>Attracting New Contributors</strong></p>
+<p>Developers love shiny new things. A Swift-native Fastlane would scratch that itch and attract fresh contributors who’ve avoided the massive Ruby codebase.</p>
+<h2>In Summary</h2>
+<p>Fastlane is still essential in many iOS workflows, but its Swift interface feels like an afterthought.</p>
+<p>I’m not calling for a full rewrite. Just the core features: building, testing, signing, and maybe a few more. The 20 percent that delivers 80 percent of the value.</p>
+<p>That alone could make a huge difference.</p>
+<p>I believe it’s worth it.</p>
+
+
+<ul class="tags">
+</ul>
+
+<footer>
+    <div class="footer-info">
+        © 2025 mollyIV | This post is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>
+    </div>
+</footer>
+            </main>
+        </div>
+    </body>
+</html>
