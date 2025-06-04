@@ -5,9 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>mollyIV</title>
         <style>:root {
-  --maincolor: #546e7a;
-  --hovercolor: #bf360c;
-  --bordercl: #78909c;
+  --maincolor: #1E90FF;
+  --hovercolor: #FF0099;
+  --bordercl: #0B3C5D;
+  --darkMaincolor: #00FF85;
 }
 
 html {
@@ -162,6 +163,69 @@ footer {
   position: absolute;
   white-space: nowrap;
   width: 1px;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: white;
+    background-color: #202124;
+  }
+
+  ::selection {
+    color: #000;
+    text-shadow: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #ddd;
+  }
+
+  h1::before {
+    color: var(--darkMaincolor);
+    content: "# ";
+  }
+  h2::before {
+    color: var(--darkMaincolor);
+    content: "## ";
+  }
+  h3::before {
+    color: var(--darkMaincolor);
+    content: "### ";
+  }
+  h4::before {
+    color: var(--darkMaincolor);
+    content: "#### ";
+  }
+  h5::before {
+    color: var(--darkMaincolor);
+    content: "##### ";
+  }
+  h6::before {
+    color: var(--darkMaincolor);
+    content: "###### ";
+  }
+
+  a {
+    border-bottom: 3px solid var(--darkMaincolor);
+    color: inherit;
+  }
+  a:hover {
+    background-color: var(--darkMaincolor);
+    color: black;
+  }
+
+  .tags a {
+    border-bottom: 3px solid var(--darkMaincolor);
+  }
+  .tags a:hover {
+    color: black;
+    background-color: var(--darkMaincolor);
+  }
 }</style>
     </head>
     <body>
