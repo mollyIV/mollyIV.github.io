@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Give the talk you’d like to hear</title>
+        <style>/**
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #f8f8f2;
+	background: none;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #272822;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: #8292a2;
+}
+
+.token.punctuation {
+	color: #f8f8f2;
+}
+
+.token.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #f92672;
+}
+
+.token.boolean,
+.token.number {
+	color: #ae81ff;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #a6e22e;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	color: #f8f8f2;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+	color: #e6db74;
+}
+
+.token.keyword {
+	color: #66d9ef;
+}
+
+.token.regex,
+.token.important {
+	color: #fd971f;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+:root {
+  --maincolor: #1E90FF;
+  --hovercolor: #FF0099;
+  --bordercl: #0B3C5D;
+  --darkMaincolor: #00FF85;
+}
+
+html {
+  font-family: "Roboto Mono", monospace, -apple-system, sans-serif;
+  font-size: 15px;
+  line-height: 1.6em;
+}
+
+body {
+  display: block;
+}
+
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+::selection {
+  background: var(--maincolor);
+  color: #fff;
+}
+
+p {
+  font-family: sans-serif;
+  line-height: 1.5;
+}
+
+a {
+  border-bottom: 3px solid var(--maincolor);
+  color: inherit;
+  text-decoration: none;
+}
+a:hover {
+  background-color: var(--hovercolor);
+  color: #fff;
+}
+
+ul {
+  list-style: none;
+  padding-left: 2ch;
+}
+ul li {
+  text-indent: -2ch;
+}
+ul > li::before {
+  content: "* ";
+  font-weight: bold;
+}
+
+.content {
+  margin-bottom: 4em;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 50em;
+  padding: 0 1ch;
+  word-wrap: break-word;
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 1em 0;
+  line-height: 2.5em;
+}
+header .main {
+  font-size: 1.5rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 1.2rem;
+  margin-top: 2em;
+}
+
+h1::before {
+  color: var(--maincolor);
+  content: "# ";
+}
+h2::before {
+  color: var(--maincolor);
+  content: "## ";
+}
+h3::before {
+  color: var(--maincolor);
+  content: "### ";
+}
+h4::before {
+  color: var(--maincolor);
+  content: "#### ";
+}
+h5::before {
+  color: var(--maincolor);
+  content: "##### ";
+}
+h6::before {
+  color: var(--maincolor);
+  content: "###### ";
+}
+
+time {
+  color: grey;
+}
+
+.meta {
+  color: #999;
+  letter-spacing: -0.5px;
+}
+
+pre[class*="language-"] {
+  -webkit-overflow-scrolling: touch;
+}
+
+code[class*="language-"]::selection,
+code[class*="language-"] span::selection {
+  background: rgba(255, 255, 255, 0.2);
+  color: inherit;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  border-top: 0.2rem dotted var(--bordercl);
+  padding: 2rem 0rem;
+  margin-top: 2rem;
+}
+
+.footer-info {
+  padding: var(--footer-padding);
+}
+
+.tags li::before {
+  content: "🏷 ";
+}
+.tags a {
+  border-bottom: 3px solid var(--maincolor);
+}
+.tags a:hover {
+  color: white;
+  background-color: var(--hovercolor);
+}
+
+/* https://www.a11yproject.com/posts/how-to-hide-content/ */
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: white;
+    background-color: #202124;
+  }
+
+  ::selection {
+    color: #000;
+    text-shadow: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #ddd;
+  }
+
+  h1::before {
+    color: var(--darkMaincolor);
+    content: "# ";
+  }
+  h2::before {
+    color: var(--darkMaincolor);
+    content: "## ";
+  }
+  h3::before {
+    color: var(--darkMaincolor);
+    content: "### ";
+  }
+  h4::before {
+    color: var(--darkMaincolor);
+    content: "#### ";
+  }
+  h5::before {
+    color: var(--darkMaincolor);
+    content: "##### ";
+  }
+  h6::before {
+    color: var(--darkMaincolor);
+    content: "###### ";
+  }
+
+  a {
+    border-bottom: 3px solid var(--darkMaincolor);
+    color: inherit;
+  }
+  a:hover {
+    background-color: var(--darkMaincolor);
+    color: black;
+  }
+
+  .tags a {
+    border-bottom: 3px solid var(--darkMaincolor);
+  }
+  .tags a:hover {
+    color: black;
+    background-color: var(--darkMaincolor);
+  }
+}</style>
+    </head>
+    <body>
+        <a href="#skip" class="visually-hidden">Skip to main content</a>
+
+        <div class="content">
+            <header>
+                <div class="main">
+                    <a href="/">mollyIV</a>
+                </div>
+                <nav>
+                    <h2 class="visually-hidden">Top level navigation menu</h2>
+                    
+                        <a href="/">Blog</a>
+                    
+                        <a href="/about/">About</a>
+                    
+                        <a href="/tags/"></a>
+                    
+                </nav>
+            </header>
+
+            <main id="skip">
+                
+
+<div class="post-title">
+    <h1>Give the talk you’d like to hear</h1>
+    <time datetime="2025-06-09" class="meta">Posted on 2025-06-09</time>
+</div>
+
+<p>Meet John.</p>
+<p>John is a software engineer at a big tech company. Recently, the company made him go back to the office. One morning, he overslept. He dashed to the garage, hopped into his white Honda Civic, started the engine, and hit the road. Unfortunately, he soon realized he wouldn’t make it on time. A slow driver was in front of him. Frustrated, John honked his horn in anger.</p>
+<p>What he forgot was to put himself in the other driver’s shoes. Maybe they were a new driver, still adjusting to the road.</p>
+<p>The same principle applies to conference speakers and their audiences.</p>
+<p>I recently attended a tech conference where I noticed many speakers failed to empathize with their audience. This oversight made the experience quite disappointing.</p>
+<p>When preparing a presentation, it’s important to remember that you’re doing it for the audience. Here are five tips to enhance their experience.</p>
+<h2>Use a hook, but follow through</h2>
+<p>With many topics competing for attention on conference agendas, your presentation must stand out. But how can you do that?</p>
+<p>In today’s world of short-form content, a hook is an effective strategy to capture attention.
+In the first few seconds of a video, a content creator often makes a striking statement or presents a compelling visual that leaves a strong impression.</p>
+<p>You can apply this technique to your presentation, but proceed with caution. Your audience is perceptive and will recognize when they’ve fallen into a hook trap. It’s disappointing when a presentation promises much but delivers low-quality content instead.</p>
+<h2>Use analogies and metaphors</h2>
+<p>Tech topics can be complex, which is why analogies and metaphors are powerful tools. They simplify explanations and make concepts more relatable.</p>
+<p>For instance, what is a function? A function in programming is like a kitchen recipe. You give in ingredients, follow the steps, and get a dish.</p>
+<p>Did you just have an &quot;aha&quot; moment? That’s the magic of analogies.</p>
+<p>Cooking is a familiar activity for most people. By connecting a new idea (like functions) to something relatable (like cooking), you make it much easier for your audience to grasp the concept. You’re essentially translating from one domain to another, and suddenly, everything clicks.</p>
+<h2>The way you speak matters</h2>
+<p>How you say something is just as important as what you say.</p>
+<p>Speak clearly and dynamically. Make sure your presentation has a good rhythm. Use storytelling to engage your audience and provoke thought, but also allow them moments to rest.</p>
+<p>Practice your speech aloud a thousand times. Memorize it so you can focus on your delivery instead of worrying about what to say next.</p>
+<h2>Don’t sell your products</h2>
+<p>We all want to make it; I get it, but marketing your products during a presentation can backfire. Your audience may feel that you are more interested in selling than in providing value to them.</p>
+<p>If your presentation is compelling enough, people will naturally want to learn more about what you offer. If they see value in your products, they will take action.</p>
+<h2>Don’t talk about yourself</h2>
+<p>A brief introduction about yourself is fine, but spending five minutes on it in a twenty-minute presentation is not.</p>
+<p>Remember, your audience attends your presentation because they find the topic interesting and want to learn about it. They want to learn about the subject, not about you.</p>
+<p>And there you have it — five tips to make your tech presentation better.</p>
+
+
+<ul class="tags">
+</ul>
+
+<footer>
+    <div class="footer-info">
+        © 2025 mollyIV | This post is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>
+    </div>
+</footer>
+            </main>
+        </div>
+    </body>
+</html>
