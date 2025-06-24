@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>How to track received push notifications</title>
+        <style>/**
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #f8f8f2;
+	background: none;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #272822;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: #8292a2;
+}
+
+.token.punctuation {
+	color: #f8f8f2;
+}
+
+.token.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #f92672;
+}
+
+.token.boolean,
+.token.number {
+	color: #ae81ff;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #a6e22e;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	color: #f8f8f2;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+	color: #e6db74;
+}
+
+.token.keyword {
+	color: #66d9ef;
+}
+
+.token.regex,
+.token.important {
+	color: #fd971f;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+:root {
+  --maincolor: #1E90FF;
+  --hovercolor: #FF0099;
+  --bordercl: #0B3C5D;
+  --darkMaincolor: #00FF85;
+}
+
+html {
+  font-family: "Roboto Mono", monospace, -apple-system, sans-serif;
+  font-size: 15px;
+  line-height: 1.6em;
+}
+
+body {
+  display: block;
+}
+
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+::selection {
+  background: var(--maincolor);
+  color: #fff;
+}
+
+p {
+  font-family: sans-serif;
+  line-height: 1.5;
+}
+
+a {
+  border-bottom: 3px solid var(--maincolor);
+  color: inherit;
+  text-decoration: none;
+}
+a:hover {
+  background-color: var(--hovercolor);
+  color: #fff;
+}
+
+ul {
+  list-style: none;
+  padding-left: 2ch;
+}
+ul li {
+  text-indent: -2ch;
+}
+ul > li::before {
+  content: "* ";
+  font-weight: bold;
+}
+
+.content {
+  margin-bottom: 4em;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 50em;
+  padding: 0 1ch;
+  word-wrap: break-word;
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 1em 0;
+  line-height: 2.5em;
+}
+header .main {
+  font-size: 1.5rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 1.2rem;
+  margin-top: 2em;
+}
+
+h1::before {
+  color: var(--maincolor);
+  content: "# ";
+}
+h2::before {
+  color: var(--maincolor);
+  content: "## ";
+}
+h3::before {
+  color: var(--maincolor);
+  content: "### ";
+}
+h4::before {
+  color: var(--maincolor);
+  content: "#### ";
+}
+h5::before {
+  color: var(--maincolor);
+  content: "##### ";
+}
+h6::before {
+  color: var(--maincolor);
+  content: "###### ";
+}
+
+time {
+  color: grey;
+}
+
+.meta {
+  color: #999;
+  letter-spacing: -0.5px;
+}
+
+pre[class*="language-"] {
+  -webkit-overflow-scrolling: touch;
+}
+
+code[class*="language-"]::selection,
+code[class*="language-"] span::selection {
+  background: rgba(255, 255, 255, 0.2);
+  color: inherit;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  border-top: 0.2rem dotted var(--bordercl);
+  padding: 2rem 0rem;
+  margin-top: 2rem;
+}
+
+blockquote {
+  border-left: 3px solid var(--bordercl);
+  color: #737373;
+  margin: 0;
+  padding-left: 1em;
+}
+
+.footer-info {
+  padding: var(--footer-padding);
+}
+
+.tags li::before {
+  content: "🏷 ";
+}
+.tags a {
+  border-bottom: 3px solid var(--maincolor);
+}
+.tags a:hover {
+  color: white;
+  background-color: var(--hovercolor);
+}
+
+/* https://www.a11yproject.com/posts/how-to-hide-content/ */
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: white;
+    background-color: #202124;
+  }
+
+  ::selection {
+    color: #000;
+    text-shadow: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #ddd;
+  }
+
+  h1::before {
+    color: var(--darkMaincolor);
+    content: "# ";
+  }
+  h2::before {
+    color: var(--darkMaincolor);
+    content: "## ";
+  }
+  h3::before {
+    color: var(--darkMaincolor);
+    content: "### ";
+  }
+  h4::before {
+    color: var(--darkMaincolor);
+    content: "#### ";
+  }
+  h5::before {
+    color: var(--darkMaincolor);
+    content: "##### ";
+  }
+  h6::before {
+    color: var(--darkMaincolor);
+    content: "###### ";
+  }
+
+  a {
+    border-bottom: 3px solid var(--darkMaincolor);
+    color: inherit;
+  }
+  a:hover {
+    background-color: var(--darkMaincolor);
+    color: black;
+  }
+
+  .tags a {
+    border-bottom: 3px solid var(--darkMaincolor);
+  }
+  .tags a:hover {
+    color: black;
+    background-color: var(--darkMaincolor);
+  }
+}</style>
+    </head>
+    <body>
+        <a href="#skip" class="visually-hidden">Skip to main content</a>
+
+        <div class="content">
+            <header>
+                <div class="main">
+                    <a href="/">mollyIV</a>
+                </div>
+                <nav>
+                    <h2 class="visually-hidden">Top level navigation menu</h2>
+                    
+                        <a href="/">Blog</a>
+                    
+                        <a href="/about/">About</a>
+                    
+                        <a href="/tags/"></a>
+                    
+                </nav>
+            </header>
+
+            <main id="skip">
+                
+
+<div class="post-title">
+    <h1>How to track received push notifications</h1>
+    <time datetime="2025-06-24" class="meta">Posted on 2025-06-24</time>
+</div>
+
+<p>To track when a user receives a push notification, use the notification service extension. While you may have used this extension to customize push content, it’s also great for integrating tracking.</p>
+<p>One of the problems with tracking pushes is the number of things you need to consider. There are multiple methods for handling notifications depending on the type (regular or silent) and the application’s state (foreground, background, or terminated). This complexity can quickly become overwhelming and difficult to manage.</p>
+<p>The notification service extension addresses this issue by providing a single entry point to the system, regardless of the notification type or application state.</p>
+<p>Here’s a step-by-step guide on how to track receiving a push notification.</p>
+<h3>1. Configure the payload</h3>
+<p>To ensure the notification service extension activates every time a user receives a push notification, include the <code>mutable-content</code> key in your notification payload and set it to <code>1</code>:</p>
+<pre class="language-json" tabindex="0"><code class="language-json"><span class="token punctuation">{</span>
+   <span class="token property">"aps"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"mutable-content"</span> <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token comment">// 👈</span>
+      <span class="token property">"alert"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
+         <span class="token property">"title"</span> <span class="token operator">:</span> <span class="token string">"The title"</span><span class="token punctuation">,</span>
+         <span class="token property">"body"</span>  <span class="token operator">:</span> <span class="token string">"The body"</span>
+     <span class="token punctuation">}</span><span class="token punctuation">,</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p><a href="https://developer.apple.com/documentation/usernotifications/modifying-content-in-newly-delivered-notifications#Configure-the-payload-for-the-remote-notification">Per Apple</a>:</p>
+<blockquote>
+<p>The system executes your notification service app extension only when a remote notification’s payload contains the following information:</p>
+<ul>
+<li>The payload must include the mutable-content key with a value of 1.</li>
+<li>The payload must include an alert dictionary with title, subtitle, or body information.
+The mutable-content flag is set so that the user’s device knows to run the corresponding service app extension, …</li>
+</ul>
+</blockquote>
+<p>With this configuration, any type of push notification sent will first trigger the service app extension:</p>
+<pre class="language-swift" tabindex="0"><code class="language-swift"><span class="token keyword">override</span> <span class="token keyword">func</span> <span class="token function-definition function">didReceive</span><span class="token punctuation">(</span>
+  <span class="token omit keyword">_</span> request<span class="token punctuation">:</span> <span class="token class-name">UNNotificationRequest</span><span class="token punctuation">,</span>
+  withContentHandler contentHandler<span class="token punctuation">:</span> 
+  <span class="token attribute atrule">@escaping</span> <span class="token punctuation">(</span><span class="token class-name">UNNotificationContent</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">Void</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// track received notifications</span>
+<span class="token punctuation">}</span></code></pre>
+<h3>2. Access user credentials</h3>
+<p>To track when a user receives a push notification, you will likely need to make authenticated network requests. A common method for storing user credentials is the keychain. However, you cannot access the same keychain used in the main application without first enabling keychain sharing.</p>
+<p><a href="https://developer.apple.com/documentation/security/sharing-access-to-keychain-items-among-a-collection-of-apps#Add-apps-to-one-or-more-keychain-access-groups">Per Apple</a>:</p>
+<blockquote>
+<p>When you want two apps to be able to share keychain items, you can add both to the same keychain access group. Do this by enabling the Keychain Sharing capability in Xcode for each app, and adding a common string to the list of keychain groups in each case. Typically, you use the same kind of reverse DNS naming for a keychain group that you use for a bundle ID, so you might choose com.example.SharedItems</p>
+</blockquote>
+<p>Enabling keychain sharing does not require changes to the provisioning profile.</p>
+<p>Once enabled, you can access user credentials stored in your iOS app. Just ensure that both the main app and the extension use the same keychain access group:</p>
+<pre class="language-swift" tabindex="0"><code class="language-swift"><span class="token keyword">let</span> keychain <span class="token operator">=</span> <span class="token class-name">Keychain</span><span class="token punctuation">(</span>
+  service<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">"com.example.foobar"</span></span><span class="token punctuation">,</span>
+  accessGroup<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">"com.example.shared"</span></span>
+<span class="token punctuation">)</span></code></pre>
+<h3>3. Respect user privacy</h3>
+<p>Users can opt out of tracking, and you must respect their choices. While it’s common to store user consent information in user defaults, you cannot read values from the standard user defaults used in the main app. Similar to the shared keychain, you need to take additional steps.</p>
+<p>To enable data sharing, use an app group.</p>
+<p><a href="https://developer.apple.com/documentation/xcode/configuring-app-groups">Per Apple</a>:</p>
+<blockquote>
+<p>An <em>app group</em> allows multiple apps developed by the same team to access one or more shared containers.
+…
+When your app becomes a member of an app group, there are a number of APIs you can use to read and write data to that group’s shared container, such as:</p>
+<ul>
+<li>Sharing preferences and other limited data by using the ~<a href="https://developer.apple.com/documentation/Foundation/UserDefaults/init%28suiteName:%29">init(suiteName:)</a>~ method to access the app group’s shared user defaults database.</li>
+</ul>
+</blockquote>
+<p>The app group requires changes to your provisioning profile. Add the newly created app group to your profile and regenerate it.</p>
+<p>When initializing user defaults, use the suite name that matches the app group identifier you created:</p>
+<pre class="language-swift" tabindex="0"><code class="language-swift"><span class="token keyword">let</span> userDefaults <span class="token operator">=</span> <span class="token class-name">UserDefaults</span><span class="token punctuation">(</span>suiteName<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">"group.com.example.mygroup"</span></span><span class="token punctuation">)</span></code></pre>
+<p>Tracking the receipt of push notifications can be a great metric of delivery success ratio, particularly if you have your own backend solution for sending pushes. Leverage the notification service extension, utilize shared keychain access, and don’t forget to respect user privacy.</p>
+
+
+<ul class="tags">
+</ul>
+
+<footer>
+    <div class="footer-info">
+        © 2025 mollyIV | This post is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>
+    </div>
+</footer>
+            </main>
+        </div>
+    </body>
+</html>
