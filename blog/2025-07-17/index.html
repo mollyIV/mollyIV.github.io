@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Made by a human</title>
+        <style>/**
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #f8f8f2;
+	background: none;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #272822;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: #8292a2;
+}
+
+.token.punctuation {
+	color: #f8f8f2;
+}
+
+.token.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #f92672;
+}
+
+.token.boolean,
+.token.number {
+	color: #ae81ff;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #a6e22e;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	color: #f8f8f2;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+	color: #e6db74;
+}
+
+.token.keyword {
+	color: #66d9ef;
+}
+
+.token.regex,
+.token.important {
+	color: #fd971f;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+:root {
+  --maincolor: #1E90FF;
+  --hovercolor: #FF0099;
+  --bordercl: #0B3C5D;
+  --darkMaincolor: #00FF85;
+}
+
+html {
+  font-family: "Roboto Mono", monospace, -apple-system, sans-serif;
+  font-size: 15px;
+  line-height: 1.6em;
+}
+
+body {
+  display: block;
+}
+
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+::selection {
+  background: var(--maincolor);
+  color: #fff;
+}
+
+p {
+  font-family: sans-serif;
+  line-height: 1.5;
+}
+
+a {
+  border-bottom: 3px solid var(--maincolor);
+  color: inherit;
+  text-decoration: none;
+}
+a:hover {
+  background-color: var(--hovercolor);
+  color: #fff;
+}
+
+ul {
+  list-style: none;
+  padding-left: 2ch;
+}
+ul li {
+  text-indent: -2ch;
+}
+ul > li::before {
+  content: "* ";
+  font-weight: bold;
+}
+
+.content {
+  margin-bottom: 4em;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 50em;
+  padding: 0 1ch;
+  word-wrap: break-word;
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 1em 0;
+  line-height: 2.5em;
+}
+header .main {
+  font-size: 1.5rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 1.2rem;
+  margin-top: 2em;
+}
+
+h1::before {
+  color: var(--maincolor);
+  content: "# ";
+}
+h2::before {
+  color: var(--maincolor);
+  content: "## ";
+}
+h3::before {
+  color: var(--maincolor);
+  content: "### ";
+}
+h4::before {
+  color: var(--maincolor);
+  content: "#### ";
+}
+h5::before {
+  color: var(--maincolor);
+  content: "##### ";
+}
+h6::before {
+  color: var(--maincolor);
+  content: "###### ";
+}
+
+time {
+  color: grey;
+}
+
+.meta {
+  color: #999;
+  letter-spacing: -0.5px;
+}
+
+pre[class*="language-"] {
+  -webkit-overflow-scrolling: touch;
+}
+
+code[class*="language-"]::selection,
+code[class*="language-"] span::selection {
+  background: rgba(255, 255, 255, 0.2);
+  color: inherit;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  border-top: 0.2rem dotted var(--bordercl);
+  padding: 2rem 0rem;
+  margin-top: 2rem;
+}
+
+blockquote {
+  border-left: 3px solid var(--bordercl);
+  color: #737373;
+  margin: 0;
+  padding-left: 1em;
+}
+
+.footer-info {
+  padding: var(--footer-padding);
+}
+
+.tags li::before {
+  content: "🏷 ";
+}
+.tags a {
+  border-bottom: 3px solid var(--maincolor);
+}
+.tags a:hover {
+  color: white;
+  background-color: var(--hovercolor);
+}
+
+/* https://www.a11yproject.com/posts/how-to-hide-content/ */
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: white;
+    background-color: #202124;
+  }
+
+  ::selection {
+    color: #000;
+    text-shadow: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #ddd;
+  }
+
+  h1::before {
+    color: var(--darkMaincolor);
+    content: "# ";
+  }
+  h2::before {
+    color: var(--darkMaincolor);
+    content: "## ";
+  }
+  h3::before {
+    color: var(--darkMaincolor);
+    content: "### ";
+  }
+  h4::before {
+    color: var(--darkMaincolor);
+    content: "#### ";
+  }
+  h5::before {
+    color: var(--darkMaincolor);
+    content: "##### ";
+  }
+  h6::before {
+    color: var(--darkMaincolor);
+    content: "###### ";
+  }
+
+  a {
+    border-bottom: 3px solid var(--darkMaincolor);
+    color: inherit;
+  }
+  a:hover {
+    background-color: var(--darkMaincolor);
+    color: black;
+  }
+
+  .tags a {
+    border-bottom: 3px solid var(--darkMaincolor);
+  }
+  .tags a:hover {
+    color: black;
+    background-color: var(--darkMaincolor);
+  }
+}</style>
+    </head>
+    <body>
+        <a href="#skip" class="visually-hidden">Skip to main content</a>
+
+        <div class="content">
+            <header>
+                <div class="main">
+                    <a href="/">mollyIV</a>
+                </div>
+                <nav>
+                    <h2 class="visually-hidden">Top level navigation menu</h2>
+                    
+                        <a href="/">Blog</a>
+                    
+                        <a href="/about/">About</a>
+                    
+                        <a href="/tags/"></a>
+                    
+                </nav>
+            </header>
+
+            <main id="skip">
+                
+
+<div class="post-title">
+    <h1>Made by a human</h1>
+    <time datetime="2025-07-17" class="meta">Posted on 2025-07-17</time>
+</div>
+
+<p>Lately, there’s been an explosion of AI-generated content. You can produce a blog post in minutes with just an idea and some prompt crafting skills. The LLM models are getting better every day, and soon, it may be difficult to distinguish between content created by humans and machines.</p>
+<p>But we’re not quite there yet.</p>
+<p>This has led me to wonder how I can prepare for the future and create AI-proof content.</p>
+<p>Technical articles are often packed with information, but straightforward, informative writing can quickly become dry and boring. I want to avoid writing yet another tutorial on how to create a liquid glass tab bar. This information is readily available online; many blogs cover it, and readers can easily find answers in documentation or through AI.</p>
+<p>Instead, I want to serve my audience and ensure they enjoy reading my content. Sharing personal stories or unique perspectives helps achieve this. For instance, as a core contributor to Fastlane, I could write about why <a href="/blog/2025-05-26/">I wish Fastlane were written in Swift</a>, offering a distinct viewpoint.</p>
+<p>I also try to bring in metaphors and analogies. They help explain complex ideas while keeping things fresh and fun.</p>
+<p>Additionally, I’m trying to implement more techniques in my writing, inspired by Odysseas' insights in his <a href="https://www.youtube.com/watch?v=0-Pkcye-eIY">video</a> on the best writing advice from over 5+ years of practice.</p>
+<p>Writing is one of the creative fields where AI is already having a massive impact, alongside art. <a href="https://x.com/codepo8">Chris Heilmann</a> wrote a <a href="https://www.wearedevelopers.com/en/magazine/579/vibe-coding-creativity-craft-and-professionalism-are-we-making-ourselves-redundant-579-1745504220">great article</a> that explores this topic in depth.</p>
+<p>Lately, I’ve been into running and consuming a lot of content about it, including reels and YouTube videos. At first, I was hooked. But one creator I liked kept posting so much that I burned out. This phenomenon often relates to information overload and content fatigue.</p>
+<p>I believe a similar fate awaits AI-generated content. While we may currently be in a honeymoon phase, mass-produced generative content will eventually wear people out.</p>
+<p>As a result, people will start to appreciate human-made content even more. Handcrafted, high-quality material will be rare and will stand the test of time; craftsmanship will be more important than ever.</p>
+<p>Studio Ghibli is often considered the gold standard in animation, and for good reason. In The Wind Rises movie, they spent more than a year animating just four seconds of footage.</p>
+<p>I write this blog for many reasons, one of which is to hone my writing skills. Perhaps naively, I hope it helps to reduce my anxiety.</p>
+<p>mollyIV.</p>
+<p>Content made by a human.</p>
+
+
+<ul class="tags">
+</ul>
+
+<footer>
+    <div class="footer-info">
+        © 2025 mollyIV | This post is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>
+    </div>
+</footer>
+            </main>
+        </div>
+    </body>
+</html>
