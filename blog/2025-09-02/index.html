@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Designing custom SwiftUI view APIs like Apple</title>
+        <style>/**
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: #f8f8f2;
+	background: none;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #272822;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: #8292a2;
+}
+
+.token.punctuation {
+	color: #f8f8f2;
+}
+
+.token.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #f92672;
+}
+
+.token.boolean,
+.token.number {
+	color: #ae81ff;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #a6e22e;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string,
+.token.variable {
+	color: #f8f8f2;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+	color: #e6db74;
+}
+
+.token.keyword {
+	color: #66d9ef;
+}
+
+.token.regex,
+.token.important {
+	color: #fd971f;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+:root {
+  --maincolor: #1E90FF;
+  --hovercolor: #FF0099;
+  --bordercl: #0B3C5D;
+  --darkMaincolor: #00FF85;
+}
+
+html {
+  font-family: "Roboto Mono", monospace, -apple-system, sans-serif;
+  font-size: 15px;
+  line-height: 1.6em;
+}
+
+body {
+  display: block;
+}
+
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+::selection {
+  background: var(--maincolor);
+  color: #fff;
+}
+
+p {
+  font-family: sans-serif;
+  line-height: 1.5;
+}
+
+a {
+  border-bottom: 3px solid var(--maincolor);
+  color: inherit;
+  text-decoration: none;
+}
+a:hover {
+  background-color: var(--hovercolor);
+  color: #fff;
+}
+
+ul {
+  list-style: none;
+  padding-left: 2ch;
+}
+ul li {
+  text-indent: -2ch;
+}
+ul > li::before {
+  content: "* ";
+  font-weight: bold;
+}
+
+.content {
+  margin-bottom: 4em;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 50em;
+  padding: 0 1ch;
+  word-wrap: break-word;
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 1em 0;
+  line-height: 2.5em;
+}
+header .main {
+  font-size: 1.5rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 1.2rem;
+  margin-top: 2em;
+}
+
+h1::before {
+  color: var(--maincolor);
+  content: "# ";
+}
+h2::before {
+  color: var(--maincolor);
+  content: "## ";
+}
+h3::before {
+  color: var(--maincolor);
+  content: "### ";
+}
+h4::before {
+  color: var(--maincolor);
+  content: "#### ";
+}
+h5::before {
+  color: var(--maincolor);
+  content: "##### ";
+}
+h6::before {
+  color: var(--maincolor);
+  content: "###### ";
+}
+
+time {
+  color: grey;
+}
+
+.meta {
+  color: #999;
+  letter-spacing: -0.5px;
+}
+
+pre[class*="language-"] {
+  -webkit-overflow-scrolling: touch;
+}
+
+code[class*="language-"]::selection,
+code[class*="language-"] span::selection {
+  background: rgba(255, 255, 255, 0.2);
+  color: inherit;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  border-top: 0.2rem dotted var(--bordercl);
+  padding: 2rem 0rem;
+  margin-top: 2rem;
+}
+
+blockquote {
+  border-left: 3px solid var(--bordercl);
+  color: #737373;
+  margin: 0;
+  padding-left: 1em;
+}
+
+.footer-info {
+  padding: var(--footer-padding);
+}
+
+.tags li::before {
+  content: "🏷 ";
+}
+.tags a {
+  border-bottom: 3px solid var(--maincolor);
+}
+.tags a:hover {
+  color: white;
+  background-color: var(--hovercolor);
+}
+
+/* https://www.a11yproject.com/posts/how-to-hide-content/ */
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: white;
+    background-color: #202124;
+  }
+
+  ::selection {
+    color: #000;
+    text-shadow: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #ddd;
+  }
+
+  h1::before {
+    color: var(--darkMaincolor);
+    content: "# ";
+  }
+  h2::before {
+    color: var(--darkMaincolor);
+    content: "## ";
+  }
+  h3::before {
+    color: var(--darkMaincolor);
+    content: "### ";
+  }
+  h4::before {
+    color: var(--darkMaincolor);
+    content: "#### ";
+  }
+  h5::before {
+    color: var(--darkMaincolor);
+    content: "##### ";
+  }
+  h6::before {
+    color: var(--darkMaincolor);
+    content: "###### ";
+  }
+
+  a {
+    border-bottom: 3px solid var(--darkMaincolor);
+    color: inherit;
+  }
+  a:hover {
+    background-color: var(--darkMaincolor);
+    color: black;
+  }
+
+  .tags a {
+    border-bottom: 3px solid var(--darkMaincolor);
+  }
+  .tags a:hover {
+    color: black;
+    background-color: var(--darkMaincolor);
+  }
+}</style>
+    </head>
+    <body>
+        <a href="#skip" class="visually-hidden">Skip to main content</a>
+
+        <div class="content">
+            <header>
+                <div class="main">
+                    <a href="/">mollyIV</a>
+                </div>
+                <nav>
+                    <h2 class="visually-hidden">Top level navigation menu</h2>
+                    
+                        <a href="/">Blog</a>
+                    
+                        <a href="/about/">About</a>
+                    
+                        <a href="/tags/"></a>
+                    
+                </nav>
+            </header>
+
+            <main id="skip">
+                
+
+<div class="post-title">
+    <h1>Designing custom SwiftUI view APIs like Apple</h1>
+    <time datetime="2025-09-02" class="meta">Posted on 2025-09-02</time>
+</div>
+
+<p>Declarative SwiftUI is great. Once you get your hands on it, there’s no going back. Public APIs are well defined and composable, clear and concise. They have some quirks, but in general, they are rock solid.</p>
+<p>We often face the challenge of implementing custom UI controls.</p>
+<p>How can we design these controls to feel as though they were created by Apple?</p>
+<p>Let’s have a look at a custom control example from the <a href="https://bear.app/">Bear</a> notes application.</p>
+<picture><source type="image/avif" srcset="/blog/2025-09-02/52nIySpNpX-342.avif 342w"><source type="image/webp" srcset="/blog/2025-09-02/52nIySpNpX-342.webp 342w"><img loading="lazy" decoding="async" src="/blog/2025-09-02/52nIySpNpX-342.png" alt="The screenshot of the Bear app tag list." width="342" height="122"></picture>
+<p>This is a list of tags. A single tag item can have the following properties:</p>
+<ul>
+<li>tag icon</li>
+<li>tag name</li>
+<li>selected/unselected state</li>
+</ul>
+<p>The first idea for the implementation could be injecting parameters via a constructor:</p>
+<pre class="language-swift" tabindex="0"><code class="language-swift"><span class="token keyword">struct</span> <span class="token class-name">TagItem</span><span class="token punctuation">:</span> <span class="token class-name">View</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> icon<span class="token punctuation">:</span> <span class="token class-name">IconImage</span>
+  <span class="token keyword">var</span> title<span class="token punctuation">:</span> <span class="token class-name">String</span>
+  <span class="token keyword">var</span> isSelected<span class="token punctuation">:</span> <span class="token class-name">Bool</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Usage</span>
+<span class="token class-name">TagItem</span><span class="token punctuation">(</span>icon<span class="token punctuation">:</span> <span class="token punctuation">.</span>manga<span class="token punctuation">,</span> title<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">"manga"</span></span><span class="token punctuation">,</span> isSelected<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
+<span class="token class-name">TagItem</span><span class="token punctuation">(</span>icon<span class="token punctuation">:</span> <span class="token punctuation">.</span>hash<span class="token punctuation">,</span> title<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">"matcha"</span></span><span class="token punctuation">,</span> isSelected<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">)</span></code></pre>
+<p>At first glance, the public API looks decent. It’s easy for a client to know what they can configure just by looking at the constructor. On the flip side, because there can be a lot of parameters to customize a control, it can be overwhelming and hard to find what they are looking for.</p>
+<p>Max Roche wrote a great article about <a href="https://medium.com/grindr-engineering/tl-dr-swiftui-makes-customizing-views-feel-effortless-until-you-build-your-own-reusable-4a3a0cd0e288">a better way to build SwiftUI components</a>. He makes the point that a <strong>UI component can be divided into mandatory and optional parts</strong>.</p>
+<p>For instance, a <code>Text</code> component is meaningless without text. If no text is provided, it would simply render a blank space. In contrast, if a text color or font isn’t set, nothing happens because these parameters are optional. The <code>Text</code> component comes with defaults for customizable properties.</p>
+<pre class="language-swift" tabindex="0"><code class="language-swift"><span class="token class-name">Text</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"Hello, world!"</span></span><span class="token punctuation">)</span> <span class="token comment">// mandatory</span>
+  <span class="token punctuation">.</span><span class="token function">foregroundStyle</span><span class="token punctuation">(</span><span class="token punctuation">.</span>orange<span class="token punctuation">)</span> <span class="token comment">// optional</span></code></pre>
+<p>We can apply this concept to our <code>TagItem</code> component. A tag requires a title, and the rest of the parameters are optional.</p>
+<pre class="language-swift" tabindex="0"><code class="language-swift"><span class="token keyword">struct</span> <span class="token class-name">TagItem</span><span class="token punctuation">:</span> <span class="token class-name">View</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> icon<span class="token punctuation">:</span> <span class="token class-name">IconImage</span> <span class="token operator">=</span> <span class="token punctuation">.</span>hash
+  <span class="token keyword">var</span> title<span class="token punctuation">:</span> <span class="token class-name">String</span>
+  <span class="token keyword">var</span> isSelected<span class="token punctuation">:</span> <span class="token class-name">Bool</span> <span class="token operator">=</span> <span class="token boolean">false</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Usage</span>
+<span class="token class-name">TagItem</span><span class="token punctuation">(</span>icon<span class="token punctuation">:</span> <span class="token punctuation">.</span>manga<span class="token punctuation">,</span> title<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">"manga"</span></span><span class="token punctuation">)</span>
+<span class="token class-name">TagItem</span><span class="token punctuation">(</span>title<span class="token punctuation">:</span> <span class="token string-literal"><span class="token string">"matcha"</span></span><span class="token punctuation">,</span> isSelected<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">)</span></code></pre>
+<p>Although the API is improved, there’s still room for enhancement. Optional parameters can be styled using dedicated modifiers:</p>
+<pre class="language-swift" tabindex="0"><code class="language-swift"><span class="token keyword">struct</span> <span class="token class-name">TagItem</span><span class="token punctuation">:</span> <span class="token class-name">View</span> <span class="token punctuation">{</span>
+  <span class="token keyword">private</span> <span class="token keyword">var</span> icon<span class="token punctuation">:</span> <span class="token class-name">IconImage</span> <span class="token operator">=</span> <span class="token punctuation">.</span>hash
+  <span class="token keyword">private</span> <span class="token keyword">var</span> title<span class="token punctuation">:</span> <span class="token class-name">String</span>
+  <span class="token keyword">private</span> <span class="token keyword">var</span> isSelected<span class="token punctuation">:</span> <span class="token class-name">Bool</span> <span class="token operator">=</span> <span class="token boolean">false</span>
+
+  <span class="token keyword">init</span><span class="token punctuation">(</span><span class="token omit keyword">_</span> title<span class="token punctuation">:</span> <span class="token class-name">String</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">self</span><span class="token punctuation">.</span>title <span class="token operator">=</span> title
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">func</span> <span class="token function-definition function">icon</span><span class="token punctuation">(</span><span class="token omit keyword">_</span> value<span class="token punctuation">:</span> <span class="token class-name">IconImage</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token keyword">Self</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> copy <span class="token operator">=</span> <span class="token keyword">self</span>
+    copy<span class="token punctuation">.</span>icon <span class="token operator">=</span> value
+    <span class="token keyword">return</span> copy
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">func</span> <span class="token function-definition function">isSelected</span><span class="token punctuation">(</span><span class="token omit keyword">_</span> value<span class="token punctuation">:</span> <span class="token class-name">IconImage</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token keyword">Self</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> copy <span class="token operator">=</span> <span class="token keyword">self</span>
+    copy<span class="token punctuation">.</span>isSelected <span class="token operator">=</span> value
+    <span class="token keyword">return</span> copy
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Usage</span>
+<span class="token class-name">TagItem</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"manga"</span></span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">icon</span><span class="token punctuation">(</span><span class="token punctuation">.</span>manga<span class="token punctuation">)</span>
+
+<span class="token class-name">TagItem</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"matcha"</span></span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">isSelected</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span></code></pre>
+<p>The API now feels more aligned with SwiftUI, but the work isn’t done yet. We still need to write boilerplate code for each custom property. We can solve it by introducing a custom macro:</p>
+<pre class="language-swift" tabindex="0"><code class="language-swift"><span class="token attribute atrule">@Customizable</span> <span class="token keyword">private</span> <span class="token keyword">var</span> icon<span class="token punctuation">:</span> <span class="token class-name">IconImage</span> <span class="token operator">=</span> <span class="token punctuation">.</span>hash
+
+<span class="token comment">// Macro expands to</span>
+<span class="token keyword">func</span> <span class="token function-definition function">icon</span><span class="token punctuation">(</span><span class="token omit keyword">_</span> value<span class="token punctuation">:</span> <span class="token class-name">IconImage</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token keyword">Self</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> copy <span class="token operator">=</span> <span class="token keyword">self</span>
+  copy<span class="token punctuation">.</span>icon <span class="token operator">=</span> value
+  <span class="token keyword">return</span> copy
+<span class="token punctuation">}</span></code></pre>
+<p>It’s uncommon to see optional values in modifiers, so by default, the <code>@Customizable</code> macro converts optional values to non-optional. If we want to retain optionals, we can add additional options to the macro:</p>
+<pre class="language-swift" tabindex="0"><code class="language-swift"><span class="token attribute atrule">@Customizable</span><span class="token punctuation">(</span>preserveOptional<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token keyword">private</span> <span class="token keyword">var</span> subtitle<span class="token punctuation">:</span> <span class="token class-name">String</span><span class="token operator">?</span>
+
+<span class="token comment">// Macro expands to</span>
+<span class="token keyword">func</span> <span class="token function-definition function">subtitle</span><span class="token punctuation">(</span><span class="token omit keyword">_</span> value<span class="token punctuation">:</span> <span class="token class-name">String</span><span class="token operator">?</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token keyword">Self</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> copy <span class="token operator">=</span> <span class="token keyword">self</span>
+  copy<span class="token punctuation">.</span>subtitle <span class="token operator">=</span> value
+  <span class="token keyword">return</span> copy
+<span class="token punctuation">}</span></code></pre>
+<p>The <code>@Customizable</code> macro is going to help with many custom properties, but there will be cases where custom modifier does better job. For example, if we want to add accessory view to our <code>TagItem</code>, a manually written modifier would be ideal for this task:</p>
+<pre class="language-swift" tabindex="0"><code class="language-swift"><span class="token class-name">TagItem</span><span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"matcha"</span></span><span class="token punctuation">)</span> 
+  <span class="token punctuation">.</span>accessoryView <span class="token punctuation">{</span>
+    <span class="token class-name">AccessoryView</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span></code></pre>
+<p>To summarize, here is how the final implementation for <code>TagItem</code> might look:</p>
+<pre class="language-swift" tabindex="0"><code class="language-swift"><span class="token keyword">struct</span> <span class="token class-name">TagItem</span><span class="token punctuation">:</span> <span class="token class-name">View</span> <span class="token punctuation">{</span>
+  <span class="token attribute atrule">@Customizable</span> <span class="token keyword">private</span> <span class="token keyword">var</span> icon<span class="token punctuation">:</span> <span class="token class-name">IconImage</span>
+  <span class="token attribute atrule">@Customizable</span> <span class="token keyword">private</span> <span class="token keyword">var</span> title<span class="token punctuation">:</span> <span class="token class-name">String</span>
+  <span class="token attribute atrule">@Customizable</span> <span class="token keyword">private</span> <span class="token keyword">var</span> isSelected<span class="token punctuation">:</span> <span class="token class-name">Bool</span>
+
+  <span class="token keyword">init</span><span class="token punctuation">(</span><span class="token omit keyword">_</span> title<span class="token punctuation">:</span> <span class="token class-name">String</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span>
+
+  <span class="token keyword">func</span> <span class="token function-definition function">accessoryView</span><span class="token operator">&lt;</span><span class="token class-name">Content</span><span class="token operator">></span><span class="token punctuation">(</span>
+    <span class="token attribute atrule">@ViewBuilder</span> content<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token class-name">Content</span>
+  <span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token keyword">some</span> <span class="token class-name">View</span> <span class="token keyword">where</span> <span class="token class-name">Content</span> <span class="token punctuation">:</span> <span class="token class-name">View</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>Transitioning from parameter injection via a constructor to using modifiers for styling optional properties simplifies API usage, improves code readability, and aligns with Apple’s design principles.</p>
+<p>A big thanks to <a href="https://medium.com/@maxproche">Max Roche</a> for writing his article, which was a big inspiration for this one!</p>
+
+
+<ul class="tags">
+</ul>
+
+<footer>
+    <div class="footer-info">
+        © 2025 mollyIV | This post is licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>
+    </div>
+</footer>
+            </main>
+        </div>
+    </body>
+</html>
